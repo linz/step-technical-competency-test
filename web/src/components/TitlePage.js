@@ -16,47 +16,43 @@ class TitlePage extends Component {
     ownerNameHandleChange(event) {
       this.setState({ownerChangeValue: event.target.value});
     }
-    ownerNameHandleSubmit(event) {
+    async ownerNameHandleSubmit(event) {
       event.preventDefault();
-      fetch(`/api/titles/${this.state.data.id}`, {
-          method: 'POST',
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ownerName: this.state.ownerChangeValue}),
-        })
-        .then(res => res.json())
-        .then(json => {
-          console.log(json)
-          this.setState({
-            data: json,
-            ownerChangeValue: '',
-          })
-        });
+
+      const res = await fetch(`/api/titles/${this.state.data.id}`,
+                       {
+                          method: 'POST',
+                          headers: {
+                              "Content-Type": "application/json",
+                          },
+                          body: JSON.stringify({ownerName: this.state.ownerChangeValue}),});
+        this.setState({
+                  data: await res.json(),
+                  ownerChangeValue: '',
+                })
+
     }
-    loadTitle() {
-      var titleNo = this.props.match.params.titleNo;
-      fetch(`/api/titles/${titleNo}`)
-        .then(res => res.json())
-        .then(json => {
-          console.log(json)
-          this.setState({
-            data: json,
-          })
-        });
+    async loadTitle() {
+        const titleNo = this.props.match.params.titleNo;
+        const res = await fetch(`/api/titles/${titleNo}`);
+        if (res.status === 200) {
+            this.setState({
+                data: await res.json(),
+            })
+        }
     }
-    componentDidMount() {
-      this.loadTitle();
+    async componentDidMount() {
+      await this.loadTitle();
     }
-    componentDidUpdate(newProps) {
-      var titleNo = this.props.match.params.titleNo;
+    async componentDidUpdate(newProps) {
+      const titleNo = this.props.match.params.titleNo;
       if(this.state.data && String(this.state.data.id) !== String(titleNo)) {
-        this.loadTitle();
+        await this.loadTitle();
       }
     }
     render() {
-      var titleNo = this.props.match.params.titleNo;
-      var title = this.state.data;
+      const titleNo = this.props.match.params.titleNo;
+      const title = this.state.data;
       return (
         <div>
           <h3>Title #{titleNo}</h3>

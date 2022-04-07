@@ -10,7 +10,7 @@ description (e.g. "Lot 1 on Block 1") and an owner.
 Users can look up a title by its title number to view it, and (as LandOnLite runs on a trust-based model) anyone can
 change the ownership of a title, though only conveyancing lawyers should.
 
-You are more than welcome to prepare a solution to the problem statement before the interview - we'll ask you to extend it with pseudo code if you do.
+You are more than welcome to prepare a solution to the problem statement before the interview - we'll ask you to extend it with pseudo code if you do. If you don't have time, we'll probably ask for some live coding.
 
 Below are instructions on how to run the application, and below that are instructions on what we will talk about in the interview. There are instructions that depend on your area of skill and the role you are applying for. Feel free to look at the other instructions if that would also show of your strengths.
 
@@ -48,7 +48,9 @@ We are going to ask you to modify the application so that when someone changes t
 
 # UI/UX focused interview
 
-Mocking out a few user experiences from the  conversation list below. Feel free to do in in code (React) or what ever tool you use: 
+If your not a backend dev, mock out the data.
+
+Mocking out a few user experiences from the conversation list below. Feel free to do in in code (React) or what ever tool you use: 
 1. Think aboout how users might navigate between other LINZ applications. We would like to have the same UX and UI across apps. These apps are Survey, Title management, and a Title/Survey Search application. 
 2. Customer detail management. Customers belong to on or more legal or survey firms. They swap between them daily. How might they know what firm they are logged into as?
 3. How might we share a common UI and UX across multiple web applications built by separate, but collaborative teams?

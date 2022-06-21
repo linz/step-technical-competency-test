@@ -1,33 +1,28 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import { Form, Input, Button } from "reactstrap";
+import React, {useState} from 'react';
+import {Button, Form, Input} from "reactstrap";
+import {withRouter} from "react-router-dom";
 
-class TitleSearch extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        value: '',
-      }
-      this.handleChange = this.handleChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
+function TitleSearch(props) {
+
+    const [value, setValue] = useState('')
+
+    function handleChange(e) {
+        setValue(e.target.value)
     }
-    handleChange(event) {
-      this.setState({value: event.target.value});
+
+    function handleSubmit () {
+        props.history.push(`/titles/${value}`);
     }
-    handleSubmit(event) {
-      this.props.history.push(`/titles/${this.state.value}`);
-    }
-    render() {
-      return (
+
+    return (
         <div style={{display: "inline-block"}}>
-          <Form inline onSubmit={this.handleSubmit}>
-            <Input type="text" value={this.state.value} onChange={this.handleChange} placeholder="Enter a title number" />
-            &nbsp;
-            <Button color="primary" type="submit" value="Submit">Go</Button>
-          </Form>
+            <Form inline onSubmit={handleSubmit}>
+                <Input type="text" value={value} onChange={handleChange} placeholder="Enter a title number" />
+                &nbsp;
+                <Button color="primary" type="submit" value="Submit">Go</Button>
+            </Form>
         </div>
-      );
-    }
-  }
+    );
+}
 
-  export default withRouter(TitleSearch);
+export default withRouter(TitleSearch);

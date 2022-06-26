@@ -10,9 +10,14 @@ description (e.g. "Lot 1 on Block 1") and an owner.
 Users can look up a title by its title number to view it, and (as LandOnLite runs on a trust-based model) anyone can
 change the ownership of a title, though only conveyancing lawyers should.
 
-You are more than welcome to prepare a solution to the problem statement before the interview - we'll ask you to extend it with pseudo code if you do. If you don't have time, we'll probably ask for some live coding.
+You are more than welcome to prepare a solution to the problem statement before the interview - we'll ask you to 
+extend it with pseudo code if you do. If you don't have time, we'll probably ask for some live coding.
 
-Below are instructions on how to run the application, and below that are instructions on what we will talk about in the interview. There are instructions that depend on your area of skill and the role you are applying for. Feel free to look at the other instructions if that would also show of your strengths.
+You do not need to make a PR or push your solution, only show it during the interview.
+
+Below are instructions on how to run the application, and below that are instructions on what we will talk about in 
+the interview. There are instructions that depend on your area of skill and the role you are applying for. Feel free 
+to look at the other instructions if that would also show of your strengths.
 
 ## Running the application
 

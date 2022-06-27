@@ -1,5 +1,4 @@
-You are encouraged to prepare a solution to the problem statements before the interview - we'll ask you to 
-extend it with pseudo code if you do. If you don't have time, we'll ask for some live coding, but this means less time for talking.
+You are encouraged to prepare a solution to the problem statements before the interview - we'll ask you to extend it with pseudo code if you do. If you don't have time, we'll ask for some live coding. If you do not prepare a solution there will be less time to evaluate your depth of knowledge.
 
 # Sample App for STEP Technical Interviews
 

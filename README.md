@@ -1,5 +1,7 @@
 You are required to prepare a solution to the problem statements before the interview - we may ask you to extend it in the interview.
 
+***
+
 # Sample App for STEP Technical Interviews
 
 This application is comprised of a Kotlin / Spring Boot API which uses an in-memory H2 database via the

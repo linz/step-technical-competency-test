@@ -48,7 +48,7 @@ API.
 
 # Application developer interview
 
-We are going to ask you to modify the application so that when someone changes the owner name on a title, it is tracked so that anybody can see the history of owner names when they look at the title.
+Modify the application so that when someone changes the owner name on a title, it is tracked so that anybody can see the history of owner names when they look at the title.
 
 # UI/UX focused interview
 

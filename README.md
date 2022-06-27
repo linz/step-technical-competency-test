@@ -1,4 +1,4 @@
-You are encouraged to prepare a solution to the problem statements before the interview - we'll ask you to extend it with pseudo code if you do. If you don't have time, we'll ask for some live coding. If you do not prepare a solution there will be less time to evaluate your depth of knowledge.
+You are STRONGLY encouraged to prepare a solution to the problem statements before the interview - we'll ask you to extend it with pseudo code if you do. If you don't have time, we'll ask for some live coding. If you do not prepare a solution there will be less time to evaluate your depth of knowledge.
 
 # Sample App for STEP Technical Interviews
 
@@ -14,7 +14,7 @@ change the ownership of a title, though only conveyancing lawyers should.
 
 You do not need to make a PR or push your solution, only show it during the interview.
 
-Below are instructions on how to run the application, and below that are instructions on what we will talk about in 
+Below are instructions on how to run the application, and instructions on what we will talk about in 
 the interview. There are instructions that depend on your area of skill and the role you are applying for. Feel free 
 to look at the other instructions if that would also show of your strengths.
 

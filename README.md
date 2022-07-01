@@ -46,7 +46,7 @@ To access the H2 database console, go to http://localhost:8081/h2-console and us
 Bare in mind this is an _in-memory_ database so any manual data or schema changes will be lost when you restart the
 API.
 
-# Application developer interview
+# Application developer focused interview
 
 Modify the application so that when someone changes the owner name on a title, it is tracked so that anybody can see the history of owner names when they look at the title.
 
@@ -65,7 +65,7 @@ Mocking out a few user experiences from the conversation list below. Feel free t
 8. Is there a way of selecting all P tags that don't have a certain attribute assigned to it? How flexible are these selectors? 
 9. How can you ensure the CSS you're using is suppported in all browsers that are in scope
 
-# DevOps Engineer interview
+# DevOps Engineer focused interview
 Contains the scripts for DevOps Technical Interview
 
 1. We have an application (frontend – ReactJS, backend that exposes api that retrieves data from database – Kotlin) and we are building it as a Docker image. 

@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
-import TitlePage from "./components/TitlePage";
 import React from "react";
 import TitleSearch from "./components/TitleSearch";
+import {TPJ} from "./components/TPJ";
 
 export function TitlePageWrapper() {
     return (
@@ -11,7 +11,7 @@ export function TitlePageWrapper() {
                 <TitleSearch />
             </div>
             <hr />
-            <TitlePage />
+            <TPJ />
         </div>
     );
 }

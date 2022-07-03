@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Button, Card, CardBody, Form, Input, Table} from "reactstrap";
 import {useParams} from "react-router";
 
-export function TPJ() {
+export function TitlePage() {
 
     let { titleNo } = useParams();
     const [data, setData] = useState(undefined)
@@ -17,7 +17,6 @@ export function TPJ() {
             loadTitle();
         }
     })
-
 
     function ownerNameHandleChange(event) {
         setOwnerChangeValue(event.target.value)

@@ -1,5 +1,5 @@
 import React from "react";
-import TitleSearch from "./components/TitleSearch";
+import TitleSearch from "./TitleSearch";
 
 export function Home() {
     return (

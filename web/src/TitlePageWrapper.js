@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import React from "react";
-import TitleSearch from "./components/TitleSearch";
 import {TitlePage} from "./components/TitlePage";
+import TitleSearch from "./TitleSearch";
 
 export function TitlePageWrapper() {
     return (

@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from "react";
-import {Button, Card, CardBody, Form, Input, Table} from "reactstrap";
+import {Button, Card, CardBody, Col, Form, Input, Row, Table} from "reactstrap";
 import {useParams} from "react-router";
 
 export function TitlePage() {
 
     let {titleNo} = useParams();
-    const [data, setData] = useState(undefined)
+    const [data, setData] = useState<any>(undefined)
     const [ownerChangeValue, setOwnerChangeValue] = useState("")
 
     useEffect(() => {
@@ -18,11 +18,11 @@ export function TitlePage() {
         }
     })
 
-    function ownerNameHandleChange(event) {
+    function ownerNameHandleChange(event: any) {
         setOwnerChangeValue(event.target.value)
     }
 
-    async function ownerNameHandleSubmit(event) {
+    async function ownerNameHandleSubmit(event: any) {
         event.preventDefault();
 
         const res = await fetch(`/api/titles/${data.id}`,
@@ -71,10 +71,13 @@ export function TitlePage() {
                         <h4>Change Owner</h4>
                         <p>As a registered conveyancing lawyer, you may record a change of ownership of this title.</p>
                         <Form inline onSubmit={ownerNameHandleSubmit}>
-                            <Input type="text" value={ownerChangeValue} onChange={ownerNameHandleChange}
-                                   placeholder="Enter the new owner name" style={{width: "400px"}}/>
-                            &nbsp;
-                            <Button color="primary" type="submit" value="Submit">Save</Button>
+                            <Row className="row-cols-lg-auto g-3 align-items-center">
+                                <Col>
+                                    <Input type="text" value={ownerChangeValue} onChange={ownerNameHandleChange}
+                                           placeholder="Enter the new owner name" style={{width: "400px"}}/>
+                                </Col>
+                                <Col><Button color="primary" type="submit" value="Submit">Save</Button></Col>
+                            </Row>
                         </Form>
                     </CardBody>
                 </Card>

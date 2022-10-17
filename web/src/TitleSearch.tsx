@@ -7,7 +7,7 @@ export default function TitleSearch() {
     const [value, setValue] = useState('')
     const navigate = useNavigate()
 
-    function handleChange(e) {
+    function handleChange(e: any) {
         setValue(e.target.value)
     }
 

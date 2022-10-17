@@ -4,16 +4,16 @@ import {useParams} from "react-router";
 
 export function TitlePage() {
 
-    let { titleNo } = useParams();
+    let {titleNo} = useParams();
     const [data, setData] = useState(undefined)
     const [ownerChangeValue, setOwnerChangeValue] = useState("")
 
-    useEffect( ()=>{
+    useEffect(() => {
         loadTitle();
     }, [])
 
-    useEffect(() =>{
-        if(data && String(data.id) !== String(titleNo)) {
+    useEffect(() => {
+        if (data && String(data.id) !== String(titleNo)) {
             loadTitle();
         }
     })
@@ -32,7 +32,8 @@ export function TitlePage() {
                     "Content-Type": "application/json",
 
                 },
-                body: JSON.stringify({ownerName: ownerChangeValue}),});
+                body: JSON.stringify({ownerName: ownerChangeValue}),
+            });
         setData(await res.json())
         setOwnerChangeValue('')
 

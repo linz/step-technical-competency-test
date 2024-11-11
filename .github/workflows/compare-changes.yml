@@ -25,7 +25,7 @@ jobs:
 
       - name: Get changed files
         id: changed-files
-        uses: ./.github/workflows/action-change-labeler
+        uses: ./.github/workflows/action-change-labeler.yml
 
       - run: echo "Changes detected ${{ steps.changed-files.outputs.changes }}"
       - run: echo "backend changed"

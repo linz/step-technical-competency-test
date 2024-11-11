@@ -31,7 +31,6 @@ jobs:
       - run: echo "Changes detected ${{ steps.changed-files.outputs.changes }}"
           echo "backend disabled ${{ !contains(fromJSON(steps.changed-files.outputs.changes), 'backend') }}\n"
           echo "frontend disabled ${{ !contains(fromJSON(steps.changed-files.outputs.changes), 'frontend') }}"
-          echo "frontend disabled ${{ !contains(fromJSON(steps.changed-files.outputs.changes), 'frontend') }}"
           echo "playwright disabled ${{ !contains(fromJSON(steps.changed-files.outputs.changes), 'playwright') }}"
           echo "workflows changed ${{ contains(fromJSON(steps.changed-files.outputs.changes), 'workflows') }}"
 

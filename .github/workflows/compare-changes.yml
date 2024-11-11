@@ -25,7 +25,7 @@ jobs:
 
       - name: Get changed files
         id: changed-files
-        uses: linz/action-change-labeler@5552aadd9f8d2ca6df5515487a2e0cb6c5226b26 # v1.0.0
+        uses: ./.github/workflows/action-change-labeler
 
       - run: echo "Changes detected ${{ steps.changed-files.outputs.changes }}"
       - run: echo "backend changed"

@@ -31,16 +31,16 @@ jobs:
       - run: echo "Changes detected ${{ steps.changed-files.outputs.changes }}"
           echo "backend ${{ contains(fromJSON(steps.changed-files.outputs.changes), 'backend') }}\n"
           echo "backend disabled ${{ !contains(fromJSON(steps.changed-files.outputs.changes), 'backend') }}\n"
-          echo "backend disabled ${{ contains(fromJSON(steps.changed-files.outputs.changes), 'backend') == 'false'}}"
-          echo "backend enabled ${{ contains(fromJSON(steps.changed-files.outputs.changes), 'backend') == 'true'}}"
+          echo "backend disabled ${{ contains(fromJSON(steps.changed-files.outputs.changes), 'backend') == false }}"
+          echo "backend enabled ${{ contains(fromJSON(steps.changed-files.outputs.changes), 'backend') == true }}"
           echo "frontend ${{ contains(fromJSON(steps.changed-files.outputs.changes), 'frontend') }}"
           echo "frontend disabled ${{ !contains(fromJSON(steps.changed-files.outputs.changes), 'frontend') }}"
-          echo "frontend disabled ${{ contains(fromJSON(steps.changed-files.outputs.changes), 'frontend') == 'false'}}"
-          echo "frontend enabled ${{ contains(fromJSON(steps.changed-files.outputs.changes), 'frontend') == 'true'}}"
+          echo "frontend disabled ${{ contains(fromJSON(steps.changed-files.outputs.changes), 'frontend') == false }}"
+          echo "frontend enabled ${{ contains(fromJSON(steps.changed-files.outputs.changes), 'frontend') == true }}"
           echo "workflows ${{ contains(fromJSON(steps.changed-files.outputs.changes), 'workflows') }}"
           echo "workflows changed ${{ !contains(fromJSON(steps.changed-files.outputs.changes), 'workflows') }}"
-          echo "workflows disabled ${{ contains(fromJSON(steps.changed-files.outputs.changes), 'workflows') == 'false'}}"
-          echo "workflows enabled ${{ contains(fromJSON(steps.changed-files.outputs.changes), 'workflows') == 'true'}}"
+          echo "workflows disabled ${{ contains(fromJSON(steps.changed-files.outputs.changes), 'workflows') == false }}"
+          echo "workflows enabled ${{ contains(fromJSON(steps.changed-files.outputs.changes), 'workflows') == true }}"
 
       - name: Check for both frontend and backend changes
         if: ${{ contains(fromJSON(steps.changed-files.outputs.changes), 'backend') && contains(fromJSON(steps.changed-files.outputs.changes), 'frontend')}}

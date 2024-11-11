@@ -29,14 +29,15 @@ jobs:
         uses: ./.github/actions-change-labeler
 
       - run: echo "Changes detected ${{ steps.changed-files.outputs.changes }}"
-      - run: echo "backend changed"
-        if: contains(fromJSON(steps.changed-files.outputs.changes), 'backend')
-      - run: echo "frontend changed"
-        if: contains(fromJSON(steps.changed-files.outputs.changes), 'frontend')
-      - run: echo "playwright changed"
-        if: contains(fromJSON(steps.changed-files.outputs.changes), 'playwright')
-      - run: echo "workflows changed"
-        if: contains(fromJSON(steps.changed-files.outputs.changes), 'workflows')
+          echo "backend disabled ${{ !contains(fromJSON(steps.changed-files.outputs.changes), 'backend') }}"
+          echo "backend disabled ${{ contains(fromJSON(steps.changed-files.outputs.changes), 'backend') == 'false'}}"
+          echo "backend disabled ${{ contains(fromJSON(steps.changed-files.outputs.changes), 'backend') == 'true'}}"
+          echo "frontend disabled ${{ !contains(fromJSON(steps.changed-files.outputs.changes), 'frontend') }}"
+          echo "backend disabled ${{ contains(fromJSON(steps.changed-files.outputs.changes), 'frontend') == 'false'}}"
+          echo "backend disabled ${{ contains(fromJSON(steps.changed-files.outputs.changes), 'frontend') == 'true'}}"
+          echo "workflows changed ${{ contains(fromJSON(steps.changed-files.outputs.changes), 'workflows') }}"
+          echo "backend disabled ${{ contains(fromJSON(steps.changed-files.outputs.changes), 'workflows') == 'false'}}"
+          echo "backend disabled ${{ contains(fromJSON(steps.changed-files.outputs.changes), 'workflows') == 'true'}}"
 
       - name: Check for both frontend and backend changes
         if: ${{ contains(fromJSON(steps.changed-files.outputs.changes), 'backend') && contains(fromJSON(steps.changed-files.outputs.changes), 'frontend')}}

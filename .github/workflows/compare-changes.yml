@@ -1,0 +1,45 @@
+name: Compare changes
+on:
+  workflow_call:
+    outputs:
+      backendDisable:
+        value: ${{ jobs.compare-changes.outputs.backendDisable && jobs.compare-changes.outputs.workflowsDisable }}
+      frontendDisable:
+        value: ${{ jobs.compare-changes.outputs.frontendDisable && jobs.compare-changes.outputs.workflowsDisable }}
+      playwrightDisable:
+        value: ${{ jobs.compare-changes.outputs.playwrightDisable && jobs.compare-changes.outputs.workflowsDisable && jobs.compare-changes.outputs.backendDisable && jobs.compare-changes.outputs.frontendDisable }}
+
+jobs:
+  compare-changes:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    outputs:
+      backendDisable: ${{ !contains(fromJSON(steps.changed-files.outputs.changes), 'backend') }}
+      frontendDisable: ${{ !contains(fromJSON(steps.changed-files.outputs.changes), 'frontend') }}
+      playwrightDisable: ${{ !contains(fromJSON(steps.changed-files.outputs.changes), 'playwright') }}
+      workflowsDisable: ${{ !contains(fromJSON(steps.changed-files.outputs.changes), 'workflows') }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Get changed files
+        id: changed-files
+        uses: linz/action-change-labeler@5552aadd9f8d2ca6df5515487a2e0cb6c5226b26 # v1.0.0
+
+      - run: echo "Changes detected ${{ steps.changed-files.outputs.changes }}"
+      - run: echo "backend changed"
+        if: contains(fromJSON(steps.changed-files.outputs.changes), 'backend')
+      - run: echo "frontend changed"
+        if: contains(fromJSON(steps.changed-files.outputs.changes), 'frontend')
+      - run: echo "playwright changed"
+        if: contains(fromJSON(steps.changed-files.outputs.changes), 'playwright')
+      - run: echo "workflows changed"
+        if: contains(fromJSON(steps.changed-files.outputs.changes), 'workflows')
+
+      - name: Check for both frontend and backend changes
+        if: ${{ contains(fromJSON(steps.changed-files.outputs.changes), 'backend') && contains(fromJSON(steps.changed-files.outputs.changes), 'frontend')}}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            core.setFailed('PR has both FE and BE changes, please split your FE and BE changes into separate PRs')

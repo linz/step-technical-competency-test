@@ -1,0 +1,42 @@
+name: Landonlite Frontend Workflow
+on:
+  pull_request:
+    branches:
+      - "master"
+
+jobs:
+  compare-changes:
+    uses: ./.github/workflows/compare-changes.yml
+
+  print-compare-changes-output:
+    runs-on: ubuntu-latest
+    needs: compare-changes
+    steps:
+      - run: echo "FrontendDisable ${{ needs.compare-changes.outputs.frontendDisable }}"
+      - run: printf "should run frontend CI ${{ needs.compare-changes.outputs.frontendDisable == 'false' }}\n"
+
+  frontend-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Cache npm packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test

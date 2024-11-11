@@ -12,6 +12,7 @@ inputs:
   repo-token:
     description: "The GitHub token used to manage labels"
     required: false
+    default: ${{ github.token }}
 
 outputs:
   changes:

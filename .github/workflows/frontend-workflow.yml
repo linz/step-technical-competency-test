@@ -14,12 +14,12 @@ jobs:
     steps:
       - run: echo "FrontendDisable ${{ needs.compare-changes.outputs.frontendDisable }}"
           echo "workflowsDisable ${{ needs.compare-changes.outputs.workflowsDisable }}"
-      - run: printf "should run frontend CI ${{ needs.compare-changes.outputs.frontendDisable == 'false' || needs.compare-changes.outputs.workflowsDisable == 'false' }}\n"
+      - run: printf "should run frontend CI - ${{ needs.compare-changes.outputs.frontendDisable == 'false' || needs.compare-changes.outputs.workflowsDisable == 'false' }}\n"
 
   frontend-test:
     needs:
       - compare-changes
-    if: ${{ needs.compare-changes.outputs.frontendDisable == 'false' }}
+    if: ${{ needs.compare-changes.outputs.frontendDisable == 'false' || needs.compare-changes.outputs.workflowsDisable == 'false' }}
     runs-on: ubuntu-latest
     defaults:
       run:

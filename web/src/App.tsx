@@ -3,7 +3,7 @@ import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
 import TitleSearch from "./TitleSearch";
 import {TitlePage} from "./components/TitlePage";
 
-// FE CHanges
+
 function App() {
     return (
         <div style={{margin: "15px"}}>

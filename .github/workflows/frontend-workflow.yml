@@ -13,7 +13,8 @@ jobs:
     needs: compare-changes
     steps:
       - run: echo "FrontendDisable ${{ needs.compare-changes.outputs.frontendDisable }}"
-      - run: printf "should run frontend CI ${{ needs.compare-changes.outputs.frontendDisable == 'false' }}\n"
+          echo "workflowsDisable ${{ needs.compare-changes.outputs.workflowsDisable }}"
+      - run: printf "should run frontend CI ${{ needs.compare-changes.outputs.frontendDisable == 'false' || needs.compare-changes.outputs.workflowsDisable == 'false' }}\n"
 
   frontend-test:
     needs:

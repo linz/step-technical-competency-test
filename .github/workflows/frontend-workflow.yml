@@ -22,6 +22,7 @@ jobs:
     steps:
       - run: echo "Skipping frontend tests ${{ needs.compare-changes.outputs.frontendDisable }}"
           echo ${{ !needs.compare-changes.outputs.frontendDisable }}
+          echo ${{ needs.compare-changes.outputs.frontendDisable == false }}
           echo ${{ needs.compare-changes.outputs.frontendDisable == 'false' }}
           echo "Skipping backend tests ${{ needs.compare-changes.outputs.backendDisable }}"
           echo ${{ needs.compare-changes.outputs.backendDisable == true }}
@@ -29,7 +30,7 @@ jobs:
   frontend-test:
     needs:
       - compare-changes
-    if: ${{ needs.compare-changes.outputs.frontendDisable == false }}
+    if: ${{ !needs.compare-changes.outputs.frontendDisable }}
     runs-on: ubuntu-latest
     defaults:
       run:

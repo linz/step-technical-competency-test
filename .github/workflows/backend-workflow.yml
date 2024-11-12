@@ -20,7 +20,7 @@ jobs:
   backend-tests:
     needs:
       - Compare-changes
-    if: ${{ !needs.Compare-changes.outputs.backendDisable }}
+    if: ${{ needs.Compare-changes.outputs.backendDisable == false }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code

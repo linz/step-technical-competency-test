@@ -15,10 +15,17 @@ jobs:
       - run: echo "FrontendDisable ${{ needs.compare-changes.outputs.frontendDisable }}"
       - run: printf "should run frontend CI ${{ needs.compare-changes.outputs.frontendDisable == 'false' }}\n"
 
+  skip-frontend-test:
+    needs:
+      - Compare-changes
+    if: ${{ needs.Compare-changes.outputs.frontendDisable == true }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Skipping frontend tests"
   frontend-test:
     needs:
       - Compare-changes
-    if: ${{ needs.Compare-changes.outputs.backendDisable == false }}
+    if: ${{ needs.Compare-changes.outputs.frontendDisable == false }}
     runs-on: ubuntu-latest
     defaults:
       run:

@@ -17,6 +17,13 @@ jobs:
       - run: printf "backendDisable ${{ needs.Compare-changes.outputs.backendDisable == 'true' }}\n"
           printf "playwrightDisable ${{ needs.Compare-changes.outputs.playwrightDisable == 'true' }}"
 
+  skip-backend-test:
+    needs:
+      - Compare-changes
+    if: ${{ needs.Compare-changes.outputs.backendDisable == true }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Skipping frontend tests"
   backend-tests:
     needs:
       - Compare-changes

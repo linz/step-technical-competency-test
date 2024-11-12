@@ -15,19 +15,18 @@ jobs:
     steps:
       - run: echo "BackendDisable ${{ needs.compare-changes.outputs.backendDisable }}"
       - run: printf "backendDisable ${{ needs.Compare-changes.outputs.backendDisable == 'true' }}\n"
-          printf "playwrightDisable ${{ needs.Compare-changes.outputs.playwrightDisable == 'true' }}"
 
   skip-backend-test:
     needs:
       - compare-changes
-    if: ${{ needs.compare-changes.outputs.backendDisable == true }}
+    if: ${{ needs.compare-changes.outputs.backendDisable == 'true' }}
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Skipping frontend tests"
+      - run: echo "Skipping backend tests"
   backend-tests:
     needs:
       - compare-changes
-    if: ${{ needs.compare-changes.outputs.backendDisable == false }}
+    if: ${{ needs.compare-changes.outputs.backendDisable == 'false' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code

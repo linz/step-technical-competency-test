@@ -1,0 +1,57 @@
+name: Determine labels based on the paths of files being changed in the pull requests.
+
+inputs:
+  configuration-path:
+    description: "The path for the label configurations"
+    default: ".github/labeler.yml"
+    required: false
+  dot:
+    description: "Whether or not to include paths starting with dot (e.g. `.github`) in glob matching"
+    default: true
+    required: false
+  repo-token:
+    description: "The GitHub token used to manage labels"
+    required: false
+    default: ${{ github.token }}
+
+outputs:
+  changes:
+    description: A JSON encoded list of all changes detected. e.g. `["backend", "frontend"]`
+    value: ${{ steps.derive-changes.outputs.result }}
+
+runs:
+  using: composite
+  steps:
+    - id: labler
+      if: ${{ github.event_name == 'pull_request' || github.event_name == 'pull_request_target' }}
+      # for PRs, use the actions/labeler action to determine change labels
+      uses: actions/labeler@8558fd74291d67161a8a78ce36a881fa63b766a9 # v5.0.0
+      with:
+        repo-token: ${{ inputs.repo-token }}
+        configuration-path: ${{ inputs.configuration-path }}
+        dot: ${{ inputs.dot }}
+        sync-labels: "true"
+
+    # Read the configuration file and use that to filter out unrelated labels in the PR
+    # e.g. labels added manually, or added by other bots/actions
+    - id: read-config
+      shell: bash
+      run: |
+        echo "Reading configuration file into JSON"
+        config=$(yq -o=json -I=0 "$CONFIG_PATH")
+        echo "config=$config" >> "$GITHUB_OUTPUT"
+      env:
+        CONFIG_PATH: ${{ inputs.configuration-path }}
+
+    - id: derive-changes
+      uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+      with:
+        script: |
+          const labels = new Set((process.env.LABELS || '').split(','));
+          const config = JSON.parse(process.env.CONFIG);
+          const changes = Object.keys(config).filter(key => labels.has(key));
+          console.log('changes', changes);
+          return changes;
+      env:
+        CONFIG: ${{ steps.read-config.outputs.config }}
+        LABELS: ${{ steps.labler.outputs.all-labels || steps.get-labels-from-source-pr.outputs.labels }}

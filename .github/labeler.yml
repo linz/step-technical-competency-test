@@ -1,0 +1,15 @@
+backend:
+  - changed-files:
+    - any-glob-to-any-file:
+      - '*gradle*'
+      - gradle/**
+      - openapi/**
+      - src/**
+frontend:
+  - changed-files:
+    - any-glob-to-any-file:
+      - web/**
+workflows:
+  - changed-files:
+    - any-glob-to-any-file:
+      - .github/**

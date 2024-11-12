@@ -3,9 +3,9 @@ on:
   workflow_call:
     outputs:
       backendDisable:
-        value: ${{ jobs.compare-changes.outputs.backendDisable && jobs.compare-changes.outputs.workflowsNotChanged }}
+        value: ${{ jobs.compare-changes.outputs.backendDisable && jobs.compare-changes.outputs.workflowsDisable }}
       frontendDisable:
-        value: ${{ jobs.compare-changes.outputs.frontendDisable && jobs.compare-changes.outputs.workflowsNotChanged }}
+        value: ${{ jobs.compare-changes.outputs.frontendDisable && jobs.compare-changes.outputs.workflowsDisable }}
       playwrightDisable:
         value: ${{ jobs.compare-changes.outputs.playwrightDisable && jobs.compare-changes.outputs.workflowsDisable && jobs.compare-changes.outputs.backendDisable && jobs.compare-changes.outputs.frontendDisable }}
 
@@ -19,7 +19,7 @@ jobs:
       backendDisable: ${{ !contains(fromJSON(steps.changed-files.outputs.changes), 'backend') }}
       frontendDisable: ${{ !contains(fromJSON(steps.changed-files.outputs.changes), 'frontend') }}
       playwrightDisable: ${{ !contains(fromJSON(steps.changed-files.outputs.changes), 'playwright') }}
-      workflowsNotChanged: ${{ !contains(fromJSON(steps.changed-files.outputs.changes), 'workflows') }}
+      workflowsDisable: ${{ !contains(fromJSON(steps.changed-files.outputs.changes), 'workflows') }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2

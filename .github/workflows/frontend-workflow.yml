@@ -18,10 +18,10 @@ jobs:
   skip-frontend-test:
     needs:
       - compare-changes
-    if: ${{ needs.compare-changes.outputs.frontendDisable == true }}
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Skipping frontend tests"
+      - run: echo "Skipping frontend tests ${{ needs.compare-changes.outputs.frontendDisable }}"
+          echo "Skipping backend tests ${{ needs.compare-changes.outputs.backendDisable }}"
   frontend-test:
     needs:
       - compare-changes

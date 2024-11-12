@@ -15,7 +15,7 @@ jobs:
     steps:
       - run: echo "BackendDisable ${{ needs.compare-changes.outputs.backendDisable }}"
           echo "workflowsDisable ${{ needs.compare-changes.outputs.workflowsDisable }}"
-      - run: printf "should run frontend CI - ${{ needs.Compare-changes.outputs.backendDisable == 'false' || needs.compare-changes.outputs.workflowsDisable == 'false' }}\n"
+      - run: printf "should run backend CI - ${{ needs.Compare-changes.outputs.backendDisable == 'false' || needs.compare-changes.outputs.workflowsDisable == 'false' }}\n"
 
   backend-tests:
     needs:

@@ -30,7 +30,7 @@ jobs:
   frontend-test:
     needs:
       - compare-changes
-    if: ${{ !needs.compare-changes.outputs.frontendDisable }}
+    if: ${{ needs.compare-changes.outputs.frontendDisable == 'false' }}
     runs-on: ubuntu-latest
     defaults:
       run:
